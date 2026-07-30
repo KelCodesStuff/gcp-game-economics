@@ -1,10 +1,10 @@
 # GCP Game Infrastructure Cost Calculator
 
-As a Cloud Infrastructure Engineer, I was curious about how online games scale and manage their cloud architecture. To explore this, I built the **GCP Game Infrastructure Cost Calculator** a tool that models monthly operational expenditure (OpEx) on Google Cloud Platform across compute fleets, egress network traffic, and real-time database clusters.
+As a Cloud Infrastructure Engineer, I was curious about how online games scale and manage their cloud architecture. To explore this, I built the **GCP Game Infrastructure Cost Calculator**, a tool that models monthly operational expenditure (OpEx) on Google Cloud Platform across compute fleets, egress network traffic, and real-time database clusters.
 
 ---
 
-## 1. Tool Overview & Purpose
+## Tool Overview & Purpose
 
 Estimating cloud costs for live-service multiplayer games is inherently complex because game infrastructure scales across multiple non-linear, interdependent dimensions:
 
@@ -17,7 +17,7 @@ This tool abstracts these multi-variable cloud pricing vectors into interactive 
 
 ---
 
-## 2. System Architecture & Technical Stack
+## System Architecture & Technical Stack
 
 The calculator is constructed using a decoupled, reactive component architecture designed for zero-latency UI re-rendering upon parameter adjustments.
 
@@ -55,7 +55,7 @@ The calculator is constructed using a decoupled, reactive component architecture
 
 ---
 
-## 3. How the Tool Was Created: Step-by-Step Process
+## How the Tool Was Created: Step-by-Step Process
 
 The development process followed five structured phases:
 
@@ -93,7 +93,7 @@ Observers were attached to the state store. Any input modification (e.g., slidin
 
 ---
 
-## 4. Reference Sources & Architectural Standards
+## Reference Sources & Architectural Standards
 
 The estimates, network footprints, and architectures modeled in this tool are based on official documentation, white papers, and pricing guides:
 
