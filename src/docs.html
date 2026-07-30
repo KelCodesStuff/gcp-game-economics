@@ -1,0 +1,33 @@
+<div
+    class="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div>
+        <h1 class="text-2xl font-extrabold text-white">Cloud Architecture & Economics Engineering Insights</h1>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">Explore full research documents covering
+            GCP architectural requirements, discount mechanics, unit ARPU targets, and scale curves.</p>
+    </div>
+    <div class="relative w-full sm:w-64">
+        <input id="doc-search" type="text" oninput="filterDocs()" placeholder="Search documents..."
+            class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-4 py-2 text-xs text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500">
+        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-xs text-slate-500"></i>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <!-- Document Navigation Sidebar (4 Cols) -->
+    <div class="lg:col-span-4 space-y-3">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 px-1">Select Document</h3>
+        <div id="doc-list-container" class="space-y-2">
+            <!-- Dynamically populated -->
+        </div>
+    </div>
+
+    <!-- Document Viewer Pane (8 Cols) -->
+    <div class="lg:col-span-8">
+        <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 relative">
+            <!-- Markdown Content Box -->
+            <div id="doc-content" class="markdown-body">
+                <!-- Rendered Markdown goes here -->
+            </div>
+        </div>
+    </div>
+</div>

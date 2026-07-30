@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCP Game Infrastructure</title>
+    <!-- Tailwind CSS (retained for utility styling) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Brand Title -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('calculator')">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-400 via-indigo-500 to-rose-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-sky-500/20">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <div>
+                        <span class="text-lg font-bold tracking-tight text-white block leading-tight">GCP Game
+                            Infrastructure</span>
+                    </div>
+                </div>
+
+                <!-- Main Navigation Tabs -->
+                <nav class="hidden md:flex space-x-1">
+                    <button id="nav-calculator" onclick="switchTab('calculator')"
+                        class="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center space-x-2 text-sky-400 bg-sky-500/10 border border-sky-500/20">
+                        <span>Calculator</span>
+                    </button>
+
+                    <button id="nav-docs" onclick="switchTab('docs')"
+                        class="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center space-x-2 text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 border border-transparent">
+                        <span>Engineering Insights</span>
+                    </button>
+                    <button id="nav-glossary" onclick="switchTab('glossary')"
+                        class="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center space-x-2 text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 border border-transparent">
+                        <span>Glossary</span>
+                    </button>
+                </nav>
+
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div
+            class="flex md:hidden border-t border-slate-800 px-2 py-1.5 justify-around bg-slate-900/90 text-xs font-medium">
+            <button id="mobile-nav-calculator" onclick="switchTab('calculator')"
+                class="py-1.5 px-3 rounded text-sky-400 font-bold bg-sky-500/10">Calculator</button>
+
+            <button id="mobile-nav-docs" onclick="switchTab('docs')"
+                class="py-1.5 px-3 rounded text-slate-400">Insights</button>
+            <button id="mobile-nav-glossary" onclick="switchTab('glossary')"
+                class="py-1.5 px-3 rounded text-slate-400">Glossary</button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- ========================================== -->
+        <!-- VIEW 1: INTERACTIVE CALCULATOR             -->
+        <!-- ========================================== -->
+        <section id="view-calculator" class="space-y-8"></section>
+
+
+
+        <!-- ========================================== -->
+        <!-- VIEW: GLOSSARY                             -->
+        <!-- ========================================== -->
+        <section id="view-glossary" class="hidden space-y-8"></section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 3: KNOWLEDGE BASE (3 REPORTS READER)  -->
+        <!-- ========================================== -->
+        <section id="view-docs" class="hidden space-y-6"></section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-slate-950 py-6 text-center text-xs text-slate-500 mt-12 no-print">
+        <p>GCP Game Infrastructure • Modular Web App</p>
+    </footer>
+
+    <!-- Entry module -->
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,269 @@
+<div class="glass-card rounded-2xl p-6 border border-slate-800">
+    <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Technical & Financial Glossary</h1>
+    <p class="text-slate-400 text-sm mt-1">Definitions of core metrics, systems, infrastructure vectors, and cloud
+        economics parameters.</p>
+</div>
+
+<div class="space-y-8">
+    <!-- Player & Concurrency Metrics -->
+    <div class="space-y-4">
+        <h2 class="text-lg font-bold text-sky-400 flex items-center space-x-2 border-b border-slate-800 pb-2">
+            <span>Player & Concurrency Metrics</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">DAU (Daily Active Users)</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">The total number of unique players who log into and
+                    interact with the game within a 24-hour period.</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">CCU (Concurrent Users)</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">The number of players actively connected to the game
+                    servers at any single moment.</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">Peak CCU</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">The maximum simultaneous online player count during
+                    peak gaming hours (typically local evening hours).</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">CCU / DAU Ratio</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">The percentage of daily active users online
+                    simultaneously during peak hours (industry standard typically ranges between $5\%$ and $20\%$).</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2 md:col-span-2">
+                <h3 class="text-sm font-semibold text-white">ARPU (Average Revenue Per User)</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Total monthly revenue divided by total active users,
+                    used to determine whether infrastructure spending per user remains profitable.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Compute & Orchestration -->
+    <div class="space-y-4">
+        <h2 class="text-lg font-bold text-sky-400 flex items-center space-x-2 border-b border-slate-800 pb-2">
+            <span>Compute & Orchestration</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">vCPU (Virtual Central Processing Unit)</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">A unit of cloud compute capacity equivalent to one
+                    physical execution thread on a multithreaded cloud server processor.</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">RAM (Random Access Memory)</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">System memory required by game server binaries to
+                    maintain active map state, spatial physics entities, and connected player structures.</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">GKE (Google Kubernetes Engine)</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">GCP’s managed Kubernetes service, used to deploy,
+                    auto-scale, and manage containerized game server workloads.</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">Agones</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">An open-source, Kubernetes-native game server
+                    management framework designed to host, scale, and manage dedicated game server pods in real time.
+                </p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">Server Density ($\text{CCU / vCPU}$)</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">The number of concurrent player connections a single
+                    vCPU core can simulate simultaneously at the target tick rate.</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">CUD (Committed Use Discount)</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">GCP pricing discounts (up to $50\%$) granted when
+                    committing to a minimum baseline of resource consumption for a 1- or 3-year term.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Networking & CDN -->
+    <div class="space-y-4">
+        <h2 class="text-lg font-bold text-sky-400 flex items-center space-x-2 border-b border-slate-800 pb-2">
+            <span>Networking & CDN</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">Tick Rate ($\text{Hz}$)</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">The frequency at which a dedicated game server updates
+                    the simulation state per second (e.g., $60\text{ Hz} = 60$ updates per second). Higher tick rates
+                    demand more compute and produce greater network bandwidth.</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">Bandwidth Footprint ($\text{KB/s}$)</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">The continuous throughput required per active player
+                    connection to synchronize inputs, positions, and game states.</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">Gameplay Network Egress</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Outbound network data transferred from GCP game
+                    servers to players' devices during active gameplay.</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">Premium Network Tier</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Google Cloud's low-latency network infrastructure that
+                    routes player traffic over Google's global private fiber network rather than the public internet.
+                </p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">CDN (Content Delivery Network)</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">A distributed network of edge caching servers used to
+                    distribute game client patches, shaders, and updates to players with high bandwidth and low latency.
+                </p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">Patch CDN Egress</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">The outbound data volume transferred when distributing
+                    game client updates, patch binaries, and assets to players from GCP Cloud CDN edge caches.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Database & Persistence -->
+    <div class="space-y-4">
+        <h2 class="text-lg font-bold text-sky-400 flex items-center space-x-2 border-b border-slate-800 pb-2">
+            <span>Database & Persistence</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">Cloud Spanner</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">GCP’s enterprise-grade, globally distributed,
+                    ACID-compliant relational database service built for high-scale global game backends (inventories,
+                    currencies, profile progression).</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">AlloyDB</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">GCP’s fully managed, PostgreSQL-compatible relational
+                    database service optimized for high-throughput transactional and analytical workloads.</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">Memorystore (Redis)</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">An in-memory cache service used for sub-millisecond
+                    retrieval of session states, matchmaking queues, and leaderboards.</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">ACID Compliance</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Database properties (Atomicity, Consistency,
+                    Isolation, Durability) ensuring that financial and inventory transactions (such as item trades or
+                    store purchases) are processed reliably without duplication or corruption.</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2 md:col-span-2">
+                <h3 class="text-sm font-semibold text-white">Database & Persistence Tier</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">The unified data storage layer (combining relational
+                    databases
+                    like Cloud Spanner or AlloyDB and caching systems like Memorystore) that handles user state,
+                    transaction stability, and game progress.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unit Economics & Financial Metrics -->
+    <div class="space-y-4">
+        <h2 class="text-lg font-bold text-sky-400 flex items-center space-x-2 border-b border-slate-800 pb-2">
+            <span>Unit Economics & Financial Metrics</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">Total Monthly Spend</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">The total estimated monthly operational cost
+                    encompassing compute, network egress, CDN patching, and database infrastructure on GCP.</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">Cost per DAU</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Total monthly infrastructure cost divided by total
+                    DAU, measuring infrastructure overhead relative to the total player base.</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">Cost per Peak CCU</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Total monthly infrastructure cost divided by maximum
+                    concurrent capacity, measuring infrastructure efficiency under peak traffic loads.</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold text-white">Infra Break-Even ARPU</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">The average monthly revenue per active user required
+                    to exactly cover the game's hosting and infrastructure costs. Calculated as Total Monthly Spend
+                    divided by DAU.</p>
+            </div>
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-2 md:col-span-2">
+                <h3 class="text-sm font-semibold text-white">Target Profitable ARPU</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">The average monthly revenue per active user required
+                    to keep infrastructure costs within a healthy target budget share (typically 10% to 15% of total
+                    revenue), ensuring overall business profitability.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Mathematical Equations -->
+    <div class="space-y-4 pt-6 border-t border-slate-800">
+        <h2 class="text-lg font-bold text-sky-400 flex items-center space-x-2 pb-2">
+            <span>Key Mathematical Equations</span>
+        </h2>
+
+        <div class="grid grid-cols-1 gap-6">
+            <!-- Concurrency (Peak CCU) -->
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-3">
+                <h3 class="text-sm font-semibold text-white">Concurrency (Peak CCU)</h3>
+                <p class="text-xs text-slate-400">Calculated by scaling the Daily Active Users (DAU) by the Peak CCU
+                    Ratio, representing the highest concurrent player load during peak operational hours:</p>
+                <div class="bg-slate-900/50 p-4 rounded-lg overflow-x-auto text-center font-mono text-sm text-white">
+                    $$\text{Peak CCU} = \text{DAU} \times \text{ccuRatio}$$
+                </div>
+            </div>
+
+            <!-- Compute Fleet Cost (GKE / Agones Nodes) -->
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-3">
+                <h3 class="text-sm font-semibold text-white">Compute Fleet Cost (GKE / Agones Nodes)</h3>
+                <p class="text-xs text-slate-400">Calculated using GCP Compute Engine baseline node pricing ($\$0.0475$
+                    per vCPU-hour across $730$ average monthly hours):</p>
+                <div
+                    class="bg-slate-900/50 p-4 rounded-lg overflow-x-auto space-y-3 text-center font-mono text-sm text-white">
+                    <div>$$\text{Raw Compute Cost} = \left(\frac{\text{Peak CCU}}{\text{Density}}\right) \times 0.0475
+                        \times 730$$</div>
+                    <div>$$\text{Compute Cost} = \text{Raw Compute Cost} \times (1 - \text{CUD Discount})$$</div>
+                </div>
+            </div>
+
+            <!-- Gameplay Network Egress Cost -->
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-3">
+                <h3 class="text-sm font-semibold text-white">Gameplay Network Egress Cost</h3>
+                <p class="text-xs text-slate-400">Calculated by converting active player gameplay bandwidth in KB/s to
+                    GB/hr, scaling over player playtime, and applying GCP's premium network egress list rate of $\$0.08$
+                    per GB:</p>
+                <div
+                    class="bg-slate-900/50 p-4 rounded-lg overflow-x-auto space-y-3 text-center font-mono text-sm text-white">
+                    <div>$$\text{GB / Hr / User} = \frac{\text{Bandwidth (KB/s)} \times 3600}{1024 \times 1024}$$</div>
+                    <div>$$\text{Monthly Gameplay Egress (GB)} = \text{Peak CCU} \times \text{GB / Hr / User} \times
+                        \text{Daily Playtime Hours} \times 30.4$$</div>
+                    <div>$$\text{Egress Cost} = \text{Monthly Gameplay Egress (GB)} \times \$0.08$$</div>
+                </div>
+            </div>
+
+            <!-- Patch CDN Distribution Cost -->
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-3">
+                <h3 class="text-sm font-semibold text-white">Patch CDN Distribution Cost</h3>
+                <p class="text-xs text-slate-400">Calculated based on total monthly client patches and content updates
+                    delivered to the player base (DAU), priced at the standard GCP Cloud CDN distribution rate of
+                    $\$0.04$ per GB:</p>
+                <div class="bg-slate-900/50 p-4 rounded-lg overflow-x-auto text-center font-mono text-sm text-white">
+                    $$\text{Patch CDN Cost} = \text{DAU} \times \text{Patch Size (GB)} \times \$0.04$$
+                </div>
+            </div>
+
+            <!-- Database & State Persistence Tier Cost -->
+            <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-3">
+                <h3 class="text-sm font-semibold text-white">Database & State Persistence Tier Cost</h3>
+                <p class="text-xs text-slate-400">Calculated by measuring database transaction rates per 1,000 active
+                    players (DAU) scaled by a genre-specific database persistence factor, combined with a persistent
+                    session fee of $\$0.01$ per Peak CCU:</p>
+                <div class="bg-slate-900/50 p-4 rounded-lg overflow-x-auto text-center font-mono text-sm text-white">
+                    $$\text{Database Cost} = \left(\frac{\text{DAU}}{1000} \times \text{DB Factor} \times 0.12\right) +
+                    (\text{Peak CCU} \times 0.01)$$
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
