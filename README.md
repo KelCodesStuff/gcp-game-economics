@@ -1,6 +1,6 @@
-# GCP Game Infrastructure Cost Calculator: Architectural Overview & Development Guide
+# GCP Game Infrastructure Cost Calculator
 
-The **GCP Game Infrastructure Cost Calculator** is an interactive web tool engineered for game architects, DevOps leads, and financial planners. It models and predicts cloud infrastructure expenditures on Google Cloud Platform (GCP) across major game archetypes and player scales.
+As a Cloud Infrastructure Engineer, I was curious about how online games scale and manage their cloud architecture. To explore this, I built the **GCP Game Infrastructure Cost Calculator** a tool that models monthly operational expenditure (OpEx) on Google Cloud Platform across compute fleets, egress network traffic, and real-time database clusters.
 
 ---
 
@@ -50,7 +50,7 @@ The calculator is constructed using a decoupled, reactive component architecture
 ### Technical Stack Components
 * **Reactive State Engine:** A Proxy-based reactivity system that stores parameters (`dau`, `preset`, `ccuRatio`, `playtime`, `patchSize`, `cud`) and publishes change events to subscribed observers.
 * **Mathematical Computation Engine:** A pure functional pipeline that processes raw inputs, executes domain equations, applies pricing tiers, and returns aggregated dollar figures and unit metrics.
-* **Visualization Engine:** Dynamic UI components that render horizontal stacked bar charts and unit metric cards to show proportional spending across infrastructure vectors.
+* **Visualization Engine:** Dynamic UI components rendering the horizontal proportional cost bar and integrated Chart.js visualizations (representing real-time Monthly Spend Scaling curves and Unit Economic ARPU vs. Target Profitability comparisons).
 * **Data Grid Layer:** An interactive financial ledger detailing line-item spending, absolute values, and percentage allocations.
 
 ---
@@ -60,13 +60,13 @@ The calculator is constructed using a decoupled, reactive component architecture
 The development process followed five structured phases:
 
 ### Phase 1: Mathematical Domain Profiling
-We analyzed five major multiplayer game genres to establish baseline engineering parameters. For each genre, we defined:
+I analyzed five major multiplayer game genres to establish baseline engineering parameters. For each genre, I defined:
 * Average gameplay network bandwidth ($\text{KB/s}$).
 * Server instance density ($\text{CCU / vCPU}$).
 * Database transactional weight factors (reads/writes per player session).
 
 ### Phase 2: Reactive State Architecture
-We built a state management store to encapsulate all user inputs and pricing constants:
+I built a state management store to encapsulate all user inputs and pricing constants:
 * `dau`: Daily Active Users (range: $10{,}000$ to $10{,}000{,}000$).
 * `ccuRatio`: Ratio of Peak Concurrent Users to DAU (default: $10\%$).
 * `playtime`: Average daily hours played per active user.
@@ -82,10 +82,25 @@ The pipeline transforms user inputs into precise monthly spending estimates:
 5. Models Database & Storage Costs by scaling instance requirements according to operational complexity factors.
 
 ### Phase 4: UI & Data Visualization Layer
-We developed three complementary display components:
+I developed several complementary display components:
 * **Editorial Metric HUD:** Displays high-level KPIs including Total Monthly Spend, Cost per DAU, and Cost per Peak CCU.
 * **Visual Breakdown Bar:** Renders color-coded proportional bars for Compute, Network Egress, CDN Patching, and Database costs.
 * **Detailed Line-Item Table:** Displays raw monetary figures and percentage contributions for financial auditing.
+* **Dynamic Chart.js Visualization Grid:** Renders dynamic charts detailing monthly cost scaling curves by user tiers and side-by-side infra break-even vs. target profitable ARPU comparisons across genres.
 
 ### Phase 5: Event Observers & Binding
 Observers were attached to the state store. Any input modification (e.g., sliding DAU from $100{,}000$ to $1{,}000{,}000$) triggers a synchronous pass through the calculation pipeline, updating all UI components without requiring page reloads.
+
+---
+
+## 4. Reference Sources & Architectural Standards
+
+The estimates, network footprints, and architectures modeled in this tool are based on official documentation, white papers, and pricing guides:
+
+* **Compute Instance Pricing & CUDs:** [Google Cloud Compute Engine Pricing](https://cloud.google.com/compute/all-pricing) (standard on-demand and 3-Year Committed Use Discount configurations).
+* **Game Server Orchestration:** [Agones Game Server Orchestration on GKE](https://agones.dev/site/) (open-source Agones architecture specifications and GKE standard topologies).
+* **Matchmaking & Session State:** [Open Match Matchmaking Framework](https://open-match.dev/site/) (Google Cloud and Unity framework specifications).
+* **Database & Persistence Tier:** [Google Cloud Spanner Pricing](https://cloud.google.com/spanner/pricing) and [GCP Memorystore (Redis) Pricing](https://cloud.google.com/memorystore/docs/redis/pricing).
+* **Network Latency & Premium Tier Routing:** [Google Cloud Network Pricing](https://cloud.google.com/vpc/network-pricing) (Standard vs. Premium Tier routing metrics for multiplayer sessions).
+* **CDN Patch Delivery:** [Google Cloud CDN Pricing & Storage](https://cloud.google.com/cdn/pricing).
+
