@@ -55,17 +55,17 @@ The calculator is constructed using a decoupled, reactive component architecture
 
 ---
 
-## How the Tool Was Created: Step-by-Step Process
+## How the Tool Was Created
 
 The development process followed five structured phases:
 
-### Phase 1: Mathematical Domain Profiling
+### Mathematical Domain Profiling
 I analyzed five major multiplayer game genres to establish baseline engineering parameters. For each genre, I defined:
 * Average gameplay network bandwidth ($\text{KB/s}$).
 * Server instance density ($\text{CCU / vCPU}$).
 * Database transactional weight factors (reads/writes per player session).
 
-### Phase 2: Reactive State Architecture
+### Reactive State Architecture
 I built a state management store to encapsulate all user inputs and pricing constants:
 * `dau`: Daily Active Users (range: $10{,}000$ to $10{,}000{,}000$).
 * `ccuRatio`: Ratio of Peak Concurrent Users to DAU (default: $10\%$).
@@ -73,7 +73,7 @@ I built a state management store to encapsulate all user inputs and pricing cons
 * `patchSize`: Monthly content patch download payload per user ($\text{GB}$).
 * `cud`: GCP 3-Year Committed Use Discount percentage ($0\%$ to $50\%$).
 
-### Phase 3: Calculation Engine Pipeline Implementation
+### Calculation Engine Pipeline Implementation
 The pipeline transforms user inputs into precise monthly spending estimates:
 1. Calculates Peak CCU from total DAU and the CCU ratio.
 2. Models Compute Fleet Costs using GCP Compute Engine standard node pricing ($\$0.0475$ per vCPU-hour across $730$ average monthly hours), applying Committed Use Discounts (CUDs).
@@ -81,26 +81,61 @@ The pipeline transforms user inputs into precise monthly spending estimates:
 4. Calculates CDN Distribution Costs for patch payload delivery across all active users.
 5. Models Database & Storage Costs by scaling instance requirements according to operational complexity factors.
 
-### Phase 4: UI & Data Visualization Layer
+### UI & Data Visualization Layer
 I developed several complementary display components:
 * **Editorial Metric HUD:** Displays high-level KPIs including Total Monthly Spend, Cost per DAU, and Cost per Peak CCU.
 * **Visual Breakdown Bar:** Renders color-coded proportional bars for Compute, Network Egress, CDN Patching, and Database costs.
 * **Detailed Line-Item Table:** Displays raw monetary figures and percentage contributions for financial auditing.
 * **Dynamic Chart.js Visualization Grid:** Renders dynamic charts detailing monthly cost scaling curves by user tiers and side-by-side infra break-even vs. target profitable ARPU comparisons across genres.
 
-### Phase 5: Event Observers & Binding
+### Event Observers & Binding
 Observers were attached to the state store. Any input modification (e.g., sliding DAU from $100{,}000$ to $1{,}000{,}000$) triggers a synchronous pass through the calculation pipeline, updating all UI components without requiring page reloads.
 
 ---
 
-## Reference Sources & Architectural Standards
+## Local Development & Setup
+
+To run the calculator and charts interface locally on your machine, follow these steps:
+
+### Prerequisites
+* **Node.js** (v18 or higher recommended)
+* **npm** (comes packaged with Node.js)
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/KelCodesStuff/gcp-game-economics.git
+   cd gcp-game-economics
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running Locally
+Start the local Vite development server:
+```bash
+npm run dev
+```
+The application will be accessible at `http://localhost:5173/`.
+
+### Building for Production
+To generate the static production asset bundle:
+```bash
+npm run build
+```
+The compiled files will be output to the `/dist` folder.
+
+---
+
+## Sources
 
 The estimates, network footprints, and architectures modeled in this tool are based on official documentation, white papers, and pricing guides:
 
-* **Compute Instance Pricing & CUDs:** [Google Cloud Compute Engine Pricing](https://cloud.google.com/compute/all-pricing) (standard on-demand and 3-Year Committed Use Discount configurations).
-* **Game Server Orchestration:** [Agones Game Server Orchestration on GKE](https://agones.dev/site/) (open-source Agones architecture specifications and GKE standard topologies).
-* **Matchmaking & Session State:** [Open Match Matchmaking Framework](https://open-match.dev/site/) (Google Cloud and Unity framework specifications).
-* **Database & Persistence Tier:** [Google Cloud Spanner Pricing](https://cloud.google.com/spanner/pricing) and [GCP Memorystore (Redis) Pricing](https://cloud.google.com/memorystore/docs/redis/pricing).
-* **Network Latency & Premium Tier Routing:** [Google Cloud Network Pricing](https://cloud.google.com/vpc/network-pricing) (Standard vs. Premium Tier routing metrics for multiplayer sessions).
-* **CDN Patch Delivery:** [Google Cloud CDN Pricing & Storage](https://cloud.google.com/cdn/pricing).
+* Compute Instance Pricing & CUDs: [Google Cloud Compute Engine Pricing](https://cloud.google.com/compute/all-pricing) (standard on-demand and 3-Year Committed Use Discount configurations).
+* Game Server Orchestration: [Agones Game Server Orchestration on GKE](https://agones.dev/site/) (open-source Agones architecture specifications and GKE standard topologies).
+* Matchmaking & Session State: [Open Match Matchmaking Framework](https://open-match.dev/site/) (Google Cloud and Unity framework specifications).
+* Database & Persistence Tier: [Google Cloud Spanner Pricing](https://cloud.google.com/spanner/pricing) and [GCP Memorystore (Redis) Pricing](https://cloud.google.com/memorystore/docs/redis/pricing).
+* Network Latency & Premium Tier Routing: [Google Cloud Network Pricing](https://cloud.google.com/vpc/network-pricing) (Standard vs. Premium Tier routing metrics for multiplayer sessions).
+* CDN Patch Delivery: [Google Cloud CDN Pricing & Storage](https://cloud.google.com/cdn/pricing).
 
