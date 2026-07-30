@@ -20,17 +20,30 @@ export function calculateCosts({ dau, ccuRatio, playtime, patchSize, cudDiscount
     const rawComputeCost = vcpusNeeded * 0.0475 * 730;
     const computeCost = rawComputeCost * (1 - cudDiscount);
 
-    // 2. Gameplay Egress
+    // 2. Gameplay Egress (Non-linear tiered bandwidth pricing)
     const gbPerHourUser = (preset.bandwidthKbps * 3600) / (1024 * 1024);
     const monthlyGameplayGB = peakCCU * gbPerHourUser * playtime * 30.4;
-    const egressCost = monthlyGameplayGB * 0.08;
+    
+    // Tiered pricing: < 100k DAU ($0.08), 100k-1M DAU ($0.06), > 1M DAU ($0.045)
+    let egressRate = 0.08;
+    if (dau > 1000000) {
+        egressRate = 0.045;
+    } else if (dau > 100000) {
+        egressRate = 0.06;
+    }
+    const egressCost = monthlyGameplayGB * egressRate;
 
-    // 3. Patch CDN
+    // 3. Patch CDN (Interconnect discount at higher volume)
     const monthlyPatchGB = dau * patchSize;
-    const patchCost = monthlyPatchGB * 0.04;
+    let patchRate = 0.04;
+    if (dau > 500000) {
+        patchRate = 0.025; // Direct CDN Interconnect savings
+    }
+    const patchCost = monthlyPatchGB * patchRate;
 
-    // 4. Database
-    const dbCost = ((dau / 1000) * preset.dbFactor * 0.12) + (peakCCU * 0.01);
+    // 4. Database (Logarithmic player capacity scaling)
+    // Scale factor models diminishing cost-per-user database overhead: dbCost proportional to (dau ^ 0.9)
+    const dbCost = (Math.pow(dau / 1000, 0.9) * preset.dbFactor * 0.12) + (peakCCU * 0.01);
 
     const totalCost = computeCost + egressCost + patchCost + dbCost;
     const breakEvenArpu = totalCost / dau;

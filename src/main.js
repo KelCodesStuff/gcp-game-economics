@@ -44,7 +44,7 @@ function updateCalc() {
     const cudDiscount = parseFloat(document.getElementById('input-cud').value) / 100;
     const presetKey = document.getElementById('calc-preset').value;
 
-    const preset = PRESETS[presetKey] || PRESETS.custom;
+    const preset = PRESETS[presetKey] || PRESETS.cod;
 
     // Run calculations
     const res = calculateCosts({ dau, ccuRatio, playtime, patchSize, cudDiscount, presetKey });
@@ -56,6 +56,10 @@ function updateCalc() {
     document.getElementById('val-playtime').innerText = playtime.toFixed(2) + ' hrs';
     document.getElementById('val-patch').innerText = patchSize + ' GB';
     document.getElementById('val-cud').innerText = (cudDiscount * 100).toFixed(0) + '% off';
+
+    // Preset Badges
+    document.getElementById('preset-bandwidth').innerText = preset.bandwidthKbps + ' Kbps';
+    document.getElementById('preset-density').innerText = preset.ccuPerVcpu + ' CCU / vCPU';
 
     // Update HUD Cards
     document.getElementById('hud-total').innerText = '$' + Math.round(res.totalCost).toLocaleString();
