@@ -1,6 +1,6 @@
 # GCP Game Infrastructure Cost Calculator
 
-[![Deploy static content to Pages](https://github.com/KelCodesStuff/gcp-game-economics/actions/workflows/deploy.yml/badge.svg)](https://github.com/KelCodesStuff/gcp-game-economics/actions/workflows/deploy.yml)
+[![Build and Deploy](https://github.com/KelCodesStuff/gcp-game-economics/actions/workflows/deploy.yml/badge.svg)](https://github.com/KelCodesStuff/gcp-game-economics/actions/workflows/deploy.yml)
 
 As a Cloud Infrastructure Engineer, I was curious about how online games scale and manage their cloud architecture. To explore this, I built the GCP Game Infrastructure Cost Calculator, a tool that models monthly operational expenditure (OpEx) on Google Cloud Platform across compute fleets, egress network traffic, and real-time database clusters.
 
